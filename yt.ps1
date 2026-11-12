@@ -4,35 +4,52 @@ param(
     [string]$opcao
 )
 
-Write-Output "Iniciando download..."
-
-$pastamusic = "C:\Users\Nicholas Gabriel\Music"
+$pastamusic = "C:\Users\Nicholas Gabriel\Music\yt-dlp"
 $pastavideo = "C:\Users\Nicholas Gabriel\Videos\yt-dlp"
-# Verifica qual opcao foi escolhida
+
+Write-Output "INICIANDO"
+
 switch ($opcao) {
 
     "1" {
-        Write-Output "Baixando somente o audio..."
+        Write-Output "BAIXANDO_AUDIO"
 
-        yt-dlp -P $pastamusic -x --audio-format mp3 $link
+        & yt-dlp `
+            --newline `
+            --progress `
+            --progress-template "download:PROGRESSO|%(progress._percent_str)s|%(progress._speed_str)s|%(progress._downloaded_bytes_str)s|%(progress._total_bytes_str)s|%(progress._eta_str)s" `
+            -P $pastamusic `
+            -x `
+            --audio-format mp3 `
+            $link
     }
 
     "2" {
-        Write-Output "Baixando somente o video..."
+        Write-Output "BAIXANDO_VIDEO"
 
-        yt-dlp -P $pastavideo -f "bv*+ba/b" --merge-output-format mp4 $link
+        & yt-dlp `
+            --newline `
+            --progress `
+            --progress-template "download:PROGRESSO|%(progress._percent_str)s|%(progress._speed_str)s|%(progress._downloaded_bytes_str)s|%(progress._total_bytes_str)s|%(progress._eta_str)s" `
+            -P $pastavideo `
+            -f "bv*+ba/b" `
+            --merge-output-format mp4 `
+            $link
     }
 
     default {
-        Write-Output "Opcao invalida!"
+        Write-Output "OPCAO_INVALIDA"
         exit 1
     }
 }
 
-if ($LASTEXITCODE -eq 0) {
-    Write-Output "Download concluido!"
+$codigo = $LASTEXITCODE
+
+if ($codigo -eq 0) {
+    Write-Output "DOWNLOAD_CONCLUIDO"
+    exit 0
 }
 else {
-    Write-Output "Erro durante o download!"
-    exit 1
+    Write-Output "DOWNLOAD_ERRO"
+    exit $codigo
 }
