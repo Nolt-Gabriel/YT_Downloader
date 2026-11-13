@@ -15,7 +15,7 @@
 
 ## ✨ Sobre o projeto
 
-O **YT Downloader** é um aplicativo desenvolvido em Python que permite baixar vídeos e extrair áudios de maneira prática, através de uma interface gráfica.
+O **YT Downloader** é um aplicativo desenvolvido em Python que permite baixar vídeos e extrair áudios de maneira prática, através de uma interface gráfica. Criado com auxílio de Inteligência Artificial.
 
 Utilizando o poder do [yt-dlp](https://github.com/yt-dlp/yt-dlp) e do [FFmpeg](https://ffmpeg.org/), o programa oferece uma experiência simples, sem a necessidade de utilizar comandos no terminal durante os downloads.
 
