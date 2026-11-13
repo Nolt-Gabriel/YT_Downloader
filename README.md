@@ -91,7 +91,7 @@ git clone https://github.com/Nolt-Gabriel/YT_Downloader.git
 **2. Entre na pasta do projeto:**
 
 ```bash
-cd Baixador
+cd YT_Downloader
 ```
 
 **3. Instale as dependências:**
@@ -103,7 +103,7 @@ pip install -r requirements.txt
 **4. Execute o aplicativo:**
 
 ```bash
-python main.py
+python yt.py
 ```
 
 > 💡 Não esqueça de instalar o yt-dlp e o FFmpeg e adicioná-los ao `PATH`, mesmo executando pelo código-fonte.
@@ -119,7 +119,7 @@ pip install pyinstaller
 Depois, execute:
 
 ```powershell
-python -m PyInstaller --noconfirm --clean --onefile --windowed --name "YT Downloader" --collect-all customtkinter --add-data "yt.ps1;." main.py
+python -m PyInstaller --noconfirm --clean --onefile --windowed --name "YT Downloader" --collect-all customtkinter --add-data "yt.ps1;." yt.py
 ```
 
 O arquivo será gerado na pasta `dist`.
