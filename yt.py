@@ -356,6 +356,28 @@ class Baixador:
                 state="normal"
             )
 
+        elif linha == "ERRO_YTDLP_NAO_ENCONTRADO":
+            self.status.configure(
+                text="yt-dlp não encontrado. Instale o programa.",
+                text_color="#F87171"
+            )
+            self.mostrar_popup(
+                "Dependência ausente",
+                "O yt-dlp não foi encontrado. Instale-o e adicione ao PATH.",
+                sucesso=False
+            )
+
+        elif linha == "ERRO_FFMPEG_NAO_ENCONTRADO":
+            self.status.configure(
+                text="FFmpeg não encontrado. Instale o programa.",
+                text_color="#F87171"
+            )
+            self.mostrar_popup(
+                "Dependência ausente",
+                "O FFmpeg não foi encontrado. Instale-o e adicione ao PATH.",
+                sucesso=False
+            )
+
         elif linha and linha not in [
                     "INICIANDO"
                 ]:

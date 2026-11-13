@@ -10,11 +10,20 @@ $pastavideo = Join-Path $env:USERPROFILE "Videos\yt-dlp"
 New-Item -ItemType Directory -Force -Path $pastamusic | Out-Null
 New-Item -ItemType Directory -Force -Path $pastavideo | Out-Null
 
-$pastaTools = Join-Path $PSScriptRoot "tools"
+# Procura os programas instalados no PATH do Windows
+$ytDlp = Get-Command "yt-dlp.exe" -ErrorAction SilentlyContinue
+$ffmpeg = Get-Command "ffmpeg.exe" -ErrorAction SilentlyContinue
+$ffprobe = Get-Command "ffprobe.exe" -ErrorAction SilentlyContinue
 
-$ytDlp = Join-Path $pastaTools "yt-dlp.exe"
+if (-not $ytDlp) {
+    Write-Output "ERRO_YTDLP_NAO_ENCONTRADO"
+    exit 1
+}
 
-$env:PATH = "$pastaTools;$env:PATH"
+if (-not $ffmpeg -or -not $ffprobe) {
+    Write-Output "ERRO_FFMPEG_NAO_ENCONTRADO"
+    exit 1
+}
 
 Write-Output "INICIANDO"
 
@@ -24,7 +33,7 @@ switch ($opcao) {
         Write-Output "BAIXANDO_AUDIO"
         Write-Output "PASTA_DESTINO|$pastamusic"
 
-        & $ytDlp `
+        & $ytDlp.Source `
             --newline `
             --progress `
             --progress-template "download:PROGRESSO|%(progress._percent_str)s|%(progress._speed_str)s|%(progress._downloaded_bytes_str)s|%(progress._total_bytes_str)s|%(progress._eta_str)s" `
@@ -38,7 +47,7 @@ switch ($opcao) {
         Write-Output "BAIXANDO_VIDEO"
         Write-Output "PASTA_DESTINO|$pastavideo"
 
-        & $ytDlp `
+        & $ytDlp.Source `
             --newline `
             --progress `
             --progress-template "download:PROGRESSO|%(progress._percent_str)s|%(progress._speed_str)s|%(progress._downloaded_bytes_str)s|%(progress._total_bytes_str)s|%(progress._eta_str)s" `

@@ -1,123 +1,137 @@
-# 🎵 YT Downloader
+# 🎬 YT Downloader
 
-Um aplicativo desktop para baixar vídeos e áudios do YouTube, com uma interface gráfica simples e intuitiva.
+<p align="center">
+  Um aplicativo desktop simples e intuitivo para baixar vídeos e músicas do YouTube!
+</p>
 
-O projeto utiliza Python, CustomTkinter, PowerShell e yt-dlp para realizar os downloads, permitindo escolher entre os formatos MP3 e MP4.
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python">
+  <img src="https://img.shields.io/badge/CustomTkinter-2B2B2B?style=for-the-badge" alt="CustomTkinter">
+  <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="MIT License">
+  <img src="https://img.shields.io/badge/Platform-Windows-blue?style=for-the-badge&logo=windows&logoColor=white" alt="Windows">
+</p>
 
-## ✨ Funcionalidades
+---
 
-- 🎧 Download de áudio no formato MP3.
-- 🎬 Download de vídeo no formato MP4.
-- 📊 Barra de progresso durante o download.
-- ⚡ Exibição da velocidade e do tempo estimado de download.
-- 📂 Acesso rápido à pasta onde os arquivos foram salvos.
-- 🔔 Notificações de sucesso e erro.
-- 🌙 Interface gráfica com tema escuro.
+## ✨ Sobre o projeto
+
+O **YT Downloader** é um aplicativo desenvolvido em Python que permite baixar vídeos e extrair áudios de maneira prática, através de uma interface gráfica.
+
+Utilizando o poder do [yt-dlp](https://github.com/yt-dlp/yt-dlp) e do [FFmpeg](https://ffmpeg.org/), o programa oferece uma experiência simples, sem a necessidade de utilizar comandos no terminal durante os downloads.
+
+## 🚀 Funcionalidades
+
+- 🎵 **Download de áudio:** extração e conversão para MP3.
+- 🎥 **Download de vídeo:** download e conversão para MP4.
+- 📊 **Progresso em tempo real:** acompanhe a porcentagem do download.
+- ⚡ **Informações detalhadas:** velocidade, tamanho baixado e tempo restante.
+- 📂 **Acesso rápido:** abra diretamente a pasta onde os arquivos foram salvos.
+- 🖥️ **Interface gráfica:** visual moderno e intuitivo com CustomTkinter.
 
 ## 🛠️ Tecnologias utilizadas
 
-- **Python:** linguagem principal do projeto.
-- **CustomTkinter:** criação da interface gráfica.
-- **yt-dlp:** ferramenta responsável pelos downloads.
-- **FFmpeg:** processamento e conversão de áudio e vídeo.
-- **PowerShell:** execução dos processos de download.
-- **PyInstaller:** geração do executável para Windows.
+| Tecnologia | Utilização |
+|---|---|
+| 🐍 Python | Linguagem principal |
+| 🎨 CustomTkinter | Interface gráfica |
+| ⚙️ PowerShell | Execução dos comandos de download |
+| 📥 yt-dlp | Download de vídeos e áudios |
+| 🎞️ FFmpeg | Conversão e processamento de mídia |
+| 📦 PyInstaller | Geração do executável |
 
-## 🚀 Como utilizar
+## 📋 Requisitos
 
-1. Baixe o executável na seção [Releases](../../releases).
-2. Execute o arquivo `YT Downloader.exe`.
-3. Cole o link do vídeo do YouTube.
-4. Escolha entre MP3 ou MP4.
-5. Clique em baixar.
-6. Aguarde a conclusão do download.
+Antes de utilizar o aplicativo, é necessário instalar:
 
-## 💻 Executar o projeto pelo código-fonte
+- [yt-dlp](https://github.com/yt-dlp/yt-dlp/releases)
+- [FFmpeg](https://ffmpeg.org/download.html)
 
-Caso queira executar o projeto utilizando Python:
+> ⚠️ **Atenção:** o yt-dlp e o FFmpeg não acompanham o aplicativo. Eles precisam ser instalados separadamente e adicionados à variável de ambiente `PATH` do Windows.
+
+### 🔎 Verificando a instalação
+
+Abra o PowerShell e execute:
+
+```powershell
+where.exe yt-dlp
+where.exe ffmpeg
+where.exe ffprobe
+```
+
+Se os comandos retornarem os caminhos dos executáveis, está tudo pronto!
+
+## 📥 Como utilizar
+
+1. Instale o yt-dlp e o FFmpeg.
+2. Verifique se os programas estão disponíveis no `PATH`.
+3. Execute o arquivo `YT Downloader.exe`.
+4. Cole o link do vídeo desejado.
+5. Escolha o formato: MP3 ou MP4.
+6. Clique em **INICIAR DOWNLOAD** e acompanhe o progresso!
+
+### 📁 Onde os arquivos ficam salvos?
+
+Os downloads são organizados automaticamente:
+
+| Tipo | Pasta de destino |
+|---|---|
+| 🎵 Áudios | `Música/yt-dlp` |
+| 🎥 Vídeos | `Vídeos/yt-dlp` |
+
+## 💻 Executando pelo código-fonte
+
+Se deseja executar ou modificar o projeto, siga os passos abaixo.
 
 **1. Clone o repositório:**
 
 ```bash
-git clone https://github.com/Nolt-Gabriel/Baixador_videoaudio_ytdlp.git
+git clone https://github.com/Nolt-Gabriel/YT_Downloader.git
 ```
 
 **2. Entre na pasta do projeto:**
 
 ```bash
-cd YT-Downloader
+cd Baixador
 ```
 
-**3. Crie e ative um ambiente virtual:**
+**3. Instale as dependências:**
 
 ```bash
-python -m venv venv
+pip install -r requirements.txt
 ```
 
-Windows PowerShell:
+**4. Execute o aplicativo:**
+
+```bash
+python main.py
+```
+
+> 💡 Não esqueça de instalar o yt-dlp e o FFmpeg e adicioná-los ao `PATH`, mesmo executando pelo código-fonte.
+
+## 📦 Gerando o executável
+
+Para gerar seu próprio executável, instale o PyInstaller:
+
+```bash
+pip install pyinstaller
+```
+
+Depois, execute:
 
 ```powershell
-.\venv\Scripts\Activate.ps1
+python -m PyInstaller --noconfirm --clean --onefile --windowed --name "YT Downloader" --collect-all customtkinter --add-data "yt.ps1;." main.py
 ```
 
-**4. Instale as dependências:**
+O arquivo será gerado na pasta `dist`.
 
-```bash
-python -m pip install -r requirements.txt
-```
+## 📜 Licença
 
-**5. Execute o programa:**
+Este projeto está sob a licença [MIT](LICENSE).
 
-```bash
-python yt.py
-```
+O **yt-dlp** e o **FFmpeg** são ferramentas de terceiros, distribuídas sob suas próprias licenças.
 
-> Para executar a versão pelo código-fonte, também é necessário ter o PowerShell, yt-dlp e FFmpeg corretamente configurados.
-
-## 📁 Estrutura do projeto
-
-```text
-YT-Downloader/
-│
-├── yt.py
-├── yt.ps1
-├── tools/
-│   ├── yt-dlp.exe
-│   ├── ffmpeg.exe
-│   └── ffprobe.exe
-│
-├── requirements.txt
-├── README.md
-└── .gitignore
-```
-
-## 📌 Observações
-
-- Aplicativo desenvolvido para Windows.
-- É necessário ter conexão com a internet para realizar downloads.
-- Os arquivos são salvos nas pastas de destino configuradas pelo programa.
-- O projeto utiliza ferramentas de terceiros, cada uma sujeita aos seus respectivos termos e licenças.
-
-## 📄 Licenças
-
-## 📄 Licenças
-
-O código original do YT Downloader é distribuído sob a licença MIT.
-Consulte o arquivo [LICENSE](LICENSE) para conhecer os termos completos.
-
-O projeto também utiliza ferramentas de terceiros, que mantêm suas
-próprias licenças:
-
-- yt-dlp
-- FFmpeg e FFprobe
-- CustomTkinter
-- PyInstaller e demais dependências Python
-
-Os avisos de direitos autorais e as licenças dessas ferramentas
-estão documentados na pasta `licenses/`.
-
-A licença MIT do projeto não substitui nem altera as licenças
-dos componentes de terceiros.
 ---
 
-Desenvolvido como projeto pessoal de estudo e prática de programação.
+<p align="center">
+  Feito com 🐍 Python e ☕ dedicação por Nolt.
+</p>
